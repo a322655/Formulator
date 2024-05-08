@@ -1,15 +1,16 @@
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout
 from PySide6.QtWidgets import QAbstractItemView, QTableWidgetItem, QHeaderView, QListView
-from PySide6.QtWidgets import QComboBox, QRadioButton, QLineEdit, QSpinBox, QDoubleSpinBox, QListWidget, QTableWidget
+from qfluentwidgets import BodyLabel, ComboBox, RadioButton, LineEdit, SpinBox, DoubleSpinBox, ListWidget, \
+    TableWidget
 
 
 class LabelWidget(QWidget):
     def __init__(self, label, info: str = ""):
         super().__init__()
         if info:
-            self.label = QLabel(f"{label} - {info}")
+            self.label = BodyLabel(f"{label} - {info}")
         else:
-            self.label = QLabel(label)
+            self.label = BodyLabel(label)
 
     def set_label(self, label):
         self.label.setText(label)
@@ -21,7 +22,7 @@ class TableWithLabel(LabelWidget):
         layout = QVBoxLayout()
         self.setLayout(layout)
 
-        self.table = QTableWidget()
+        self.table = TableWidget()
 
         if row_count:
             self.table.setRowCount(row_count)
@@ -56,7 +57,7 @@ class ListWithLabel(LabelWidget):
 
         self.max_select = max_select
 
-        self.list = QListWidget()
+        self.list = ListWidget()
         self.list.setSelectionMode(QAbstractItemView.SelectionMode.MultiSelection)
         self.list.setResizeMode(QListView.ResizeMode.Adjust)
 
@@ -76,7 +77,7 @@ class ComboWithLabel(LabelWidget):
         layout = QVBoxLayout()
         self.setLayout(layout)
 
-        self.combo_box = QComboBox()
+        self.combo_box = ComboBox()
         self.items = []
         if items:
             self.set_items(items)
@@ -107,7 +108,7 @@ class RadioWithLabel(LabelWidget):
         layout = QVBoxLayout()
         self.setLayout(layout)
 
-        self.radio_button = QRadioButton()
+        self.radio_button = RadioButton()
         if text:
             self.radio_button.setText(text)
 
@@ -126,7 +127,7 @@ class SpinWithLabel(LabelWidget):
         layout = QVBoxLayout()
         self.setLayout(layout)
 
-        self.spin_box = QSpinBox()
+        self.spin_box = SpinBox()
         if minimum:
             self.spin_box.setMinimum(minimum)
 
@@ -153,7 +154,7 @@ class DoubleSpinWithLabel(LabelWidget):
         layout = QVBoxLayout()
         self.setLayout(layout)
 
-        self.spin_box = QDoubleSpinBox()
+        self.spin_box = DoubleSpinBox()
         if minimum:
             self.spin_box.setMinimum(minimum)
 
@@ -173,12 +174,13 @@ class DoubleSpinWithLabel(LabelWidget):
     def set_value(self, value):
         self.spin_box.setValue(value)
 
+
 class TextWithLabel(LabelWidget):
     def __init__(self, label):
         super().__init__(label)
         layout = QVBoxLayout(self)
 
-        self.text_browser = QLineEdit()
+        self.text_browser = LineEdit()
 
         layout.addWidget(self.label)
         layout.addWidget(self.text_browser)
@@ -195,8 +197,8 @@ class LabelWithLabel(QWidget):
         layout = QHBoxLayout()
         self.setLayout(layout)
 
-        self.label = QLabel(label)
-        self.text = QLabel()
+        self.label = BodyLabel(label)
+        self.text = BodyLabel()
         # self.text_browser.textChanged.connect(self.resize_height)
 
         layout.addWidget(self.label)

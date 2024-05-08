@@ -1,6 +1,5 @@
 import sys
 
-
 from PySide6.QtGui import QIcon
 
 from qt.components.top import TopWidget
@@ -36,7 +35,8 @@ class MainWindow(QMainWindow):
         self.central_widget = QWidget(self)
         self.setCentralWidget(self.central_widget)
 
-        self.showMaximized()
+        self.resize(1000, 800)
+
         layout = QVBoxLayout(self.central_widget)
 
         self.top_widget = TopWidget()
