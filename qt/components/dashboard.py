@@ -1,5 +1,5 @@
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QTabWidget
-
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QTabWidget
+from qfluentwidgets import PushButton
 from qt.components import ComboWithLabel, DoubleSpinWithLabel, LabelWithLabel, TableWithLabel
 from base.constant import SHIELD_BASE_MAP
 
@@ -37,7 +37,7 @@ class DashboardWidget(QWidget):
         self.duration = DoubleSpinWithLabel("战斗时长", maximum=3600, value=180)
         top_layout.addWidget(self.duration)
 
-        self.button = QPushButton(text="开始模拟!")
+        self.button = PushButton(text="开始模拟!")
         layout.addWidget(self.button)
 
         bottom_layout = QHBoxLayout()
